@@ -9,8 +9,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private GameObject player3D = null;
-    [SerializeField] private GameObject player2D = null;
+    //[SerializeField] private GameObject player3D = null;
+    //[SerializeField] private GameObject player2D = null;
 
     #region State Variables
     [SerializeField] private StateMachine _stateMachine = new StateMachine();
@@ -24,8 +24,8 @@ public class GameManager : MonoSingleton<GameManager>
     public StateMachine StateMachine { get { return _stateMachine; } set { _stateMachine = value; } }
     public State TitleState { get { return _titleState; } set { _titleState = value; } }
     public State OptionsState { get { return _optionsState; } set { _optionsState = value; } }
-    public State State3D { get { return _State3D; } set { _optionsState = value; } }
-    public State State2D { get { return _State2D; } set { _optionsState = value; } }
+    public State State3D { get { return _State3D; } set { _State3D = value; } }
+    public State State2D { get { return _State2D; } set { _State2D = value; } }
 
     //public GameObject Player3D
     //{
@@ -94,7 +94,6 @@ public class GameManager : MonoSingleton<GameManager>
     public void Update()
     {
         _stateMachine.UpdateActiveState();
-        //should put change camera state changes here
     }
 
     #endregion
@@ -102,9 +101,12 @@ public class GameManager : MonoSingleton<GameManager>
     #region Class Methods
     private void LoadGameStates()
     {
-        //TitleState = new GameStateTitle(_stateMachine);
+        State2D = new GameState2D(_stateMachine);
+        State3D = new GameState3D(_stateMachine);
+
+
         //OptionsState = new GameStateOptions(_stateMachine);
-        //_stateMachine.ChangeState(TitleState);
+        //_stateMachine.ChangeState(State2D);
     }
     #endregion
 }

@@ -17,6 +17,7 @@ public class StateMachine : IStateMachine
     public State LastState { get { return _lastState; } set { _lastState = value; } }
     public List<State> States { get { return _states; } set { _states = value; } }
     public string StateInfo { get { return _stateInfo; } set { _stateInfo = value; } }
+    public string StateName { get { return _stateName; } set { _stateName = value; } }
     #endregion
 
     #region Constructors
@@ -89,7 +90,12 @@ public class StateMachine : IStateMachine
     public void UpdateActiveState()
     {
         if (ActiveState != null)
+        {
             ActiveState.Update();
+            _stateInfo = ActiveState.ToString();
+            
+        }
+   
     }
 
     public void FixedUpdateActiveState()
@@ -98,4 +104,13 @@ public class StateMachine : IStateMachine
             ActiveState.FixedUpdate();
     }
     #endregion
+
+    public string CurrentState()
+    {
+        StateName = ActiveState.Name;
+        return StateName;
+    }
+
+
+
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CameraCalculations : MonoBehaviour
 {
-    Camera cam;
+    public Camera cam;
 
-    public bool is3D;
+    private StateMachine _stateMachine = new StateMachine();
+
+    State isState;
 
     public Transform target;
 
@@ -16,10 +18,12 @@ public class CameraCalculations : MonoBehaviour
     float distance3DOfZ = -2f;
     float distance3DOfY = 1f;
     float distance3DOfX = 1f;
+    string state = "State3D";
 
     public void Awake()
     {
         cam = GetComponent<Camera>();
+        
     }
 
     public void Start()
@@ -29,13 +33,20 @@ public class CameraCalculations : MonoBehaviour
 
     public void Update()
     {
-        if(is3D == true)
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+
+        //}
+
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            isIn3D();
-        }
-        else
-        {
-            isIn2D();
+            GameManager.Instance.StateMachine.ChangeState(GameManager.Instance.State2D);
+            string current = GameManager.Instance.StateMachine.CurrentState();
+
+            if(current == "State2D")
+            {
+                Debug.Log("game!!");
+            }
         }
     }
 
