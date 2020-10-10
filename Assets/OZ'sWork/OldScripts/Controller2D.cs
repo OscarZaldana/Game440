@@ -8,6 +8,9 @@ public class Controller2D : RayController
 {
     public float maxSlopeAngle = 80;
 
+    public GameObject teleOne;
+    public GameObject teleTwo;
+
     public CollisionInfo collisions;
     [HideInInspector]
     public Vector2 playerInput;
@@ -18,6 +21,7 @@ public class Controller2D : RayController
         base.Start();
         collisions.faceDir = 1;
         player = GetComponent<Player>();
+
     }
 
     public void Move(Vector2 moveAmount, bool standingOnPlatform)
@@ -114,6 +118,21 @@ public class Controller2D : RayController
 
                     collisions.left = directionX == -1;
                     collisions.right = directionX == 1;
+                }
+
+                //horizantal tele
+                if (hit.collider.tag == "Teleport")
+                {
+                    if(hit.collider.gameObject == teleOne)
+                    {
+                        if ((collisions.left = directionX == -1) || (collisions.right = directionX == 1))
+                            player.transform.position = new Vector3(teleTwo.transform.position.x, teleTwo.transform.position.y + 2, teleTwo.transform.position.z);
+                    }
+                    if (hit.collider.gameObject == teleTwo)
+                    {
+                        if ((collisions.left = directionX == -1) || (collisions.right = directionX == 1))
+                            player.transform.position = new Vector3(teleOne.transform.position.x, teleOne.transform.position.y + 2, teleOne.transform.position.z);
+                    }
                 }
 
                 if (hit.collider.tag == "Killed")
