@@ -33,10 +33,16 @@ public class CameraCalculations : MonoBehaviour
 
     public void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.StateMachine.ChangeState(GameManager.Instance.State3D);
+            string current = GameManager.Instance.StateMachine.CurrentState();
 
-        //}
+            if (current == "State3D")
+            {
+                Debug.Log("game3D!!");
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -45,7 +51,7 @@ public class CameraCalculations : MonoBehaviour
 
             if(current == "State2D")
             {
-                Debug.Log("game!!");
+                Debug.Log("game2D!!");
             }
         }
     }
