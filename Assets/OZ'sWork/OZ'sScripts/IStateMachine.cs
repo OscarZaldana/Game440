@@ -9,4 +9,5 @@ public interface IStateMachine
     void RemState(State state);
     void UpdateActiveState();
     void FixedUpdateActiveState();
+    string CurrentState();
 }
