@@ -17,7 +17,7 @@ public class GameState3D : State
     #region Methods
     public override void Enter()
     {
-        //on enter should notify the event call so that all objects subscribed change to 3D properties
+        Debug.Log("3DState");
     }
     public override void Exit()
     {
