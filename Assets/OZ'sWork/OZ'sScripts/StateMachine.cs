@@ -92,10 +92,7 @@ public class StateMachine : IStateMachine
         if (ActiveState != null)
         {
             ActiveState.Update();
-            _stateInfo = ActiveState.ToString();
-            
         }
-   
     }
 
     public void FixedUpdateActiveState()
