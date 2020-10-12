@@ -17,7 +17,7 @@ public class GameState2D : State
     #region Methods
     public override void Enter()
     {
-        Debug.Log("2DState");
+        EventHandler.Instance.Broadcast(new OnChangeDimension(STATENAME));
     }
     public override void Exit()
     {
