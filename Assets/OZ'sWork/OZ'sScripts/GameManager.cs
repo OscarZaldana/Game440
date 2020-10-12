@@ -104,9 +104,11 @@ public class GameManager : MonoSingleton<GameManager>
         State2D = new GameState2D(_stateMachine);
         State3D = new GameState3D(_stateMachine);
 
-
+        _stateMachine.ChangeState(State2D);
+        _stateMachine.CurrentState();
         //OptionsState = new GameStateOptions(_stateMachine);
-        //_stateMachine.ChangeState(State2D);
+
     }
     #endregion
 }
+
