@@ -8,63 +8,67 @@ public class CameraCalculations : MonoBehaviour
 
     private StateMachine _stateMachine = new StateMachine();
 
-    State isState;
-
     public Transform target;
 
-    float distance2DOfZ = -10f;
-    float distance2DOfY = 3f;
-    float distance2DOfX = 3f;
-    float distance3DOfZ = -2f;
-    float distance3DOfY = 1f;
-    float distance3DOfX = 1f;
-    string state = "State3D";
 
     public void Awake()
     {
         cam = GetComponent<Camera>();
-        
+
     }
 
     public void Start()
     {
-        
+
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.Subscribe<OnChangeDimension>(OnCameraChange);
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.Unsubscribe<OnChangeDimension>(OnCameraChange);       
     }
 
     public void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
 
-        //}
+    }
 
-        if (Input.GetKeyDown(KeyCode.S))
+    public void OnCameraChange(OnChangeDimension dimension)
+    {
+        if (dimension.Dimension == "State2D")
         {
-            GameManager.Instance.StateMachine.ChangeState(GameManager.Instance.State2D);
-            string current = GameManager.Instance.StateMachine.CurrentState();
-
-            if(current == "State2D")
-            {
-                Debug.Log("game!!");
-            }
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 3);
+            cam.orthographic = true;
         }
+        else if (dimension.Dimension == "State3D")
+        {
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+            cam.orthographic = false;
+        }
+        else Debug.Log("At this point mechanics should be the same but display is active");
+
     }
-
-
-    public void isIn2D()
-    {
-        transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        transform.position = new Vector3(target.position.x + distance2DOfX, target.position.y + distance2DOfY, target.position.z + distance2DOfZ);
-        cam.orthographic = true;
-    }
-
-    public void isIn3D()
-    {
-        transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        transform.position = new Vector3(target.position.x + distance3DOfX, target.position.y + distance3DOfY, target.position.z + distance3DOfZ);
-        cam.orthographic = false;
-    }
-
-
 
 }
+
+
+
+
+
+
+//if (Input.GetKeyDown(KeyCode.Space))
+//{
+//    GameManager.Instance.StateMachine.ChangeState(GameManager.Instance.State3D);
+//    string current = GameManager.Instance.StateMachine.CurrentState();
+
+//    if (current == "State3D")
+//    {
+//        Debug.Log("game3D!!");
+//    }
+//}
