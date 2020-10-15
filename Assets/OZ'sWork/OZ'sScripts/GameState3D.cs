@@ -18,6 +18,7 @@ public class GameState3D : State
     public override void Enter()
     {
         EventHandler.Instance.Broadcast(new OnChangeDimension(STATENAME));
+        EventHandler.Instance.Broadcast(new KareemEvent());
     }
     public override void Exit()
     {
