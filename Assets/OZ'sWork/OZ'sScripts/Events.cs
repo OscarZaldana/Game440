@@ -21,8 +21,6 @@ public class OnButtonSelect : Event
 {
 }
 
-public class OnHit : Event { }
-
 
 public class OnVirtHelmData : Event
 {
@@ -37,11 +35,24 @@ public class OnVirtHelmData : Event
     public OnVirtHelmData(float xPosition, float yPosition, float zPosition)
     {
         this.xPosition = xPosition;
-        this.xPosition = xPosition;
-        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.zPosition = zPosition;
     }
 
 }
+
+
+public class KareemEvent : Event
+{
+      
+}
+
+public class OnhitMetal : Event
+{
+
+}
+
+
 
 
 public class OnChangeDimension : Event
@@ -53,8 +64,12 @@ public class OnChangeDimension : Event
     {
         this.dimension = dimension;
     }
-
-    
-
 }
+
+
+public class OnInteraction : Event
+{
+    //we can create a bunch of different constructors for what type of object is being interacted with
+}
+
 

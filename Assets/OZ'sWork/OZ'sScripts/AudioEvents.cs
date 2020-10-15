@@ -9,25 +9,17 @@ public class AudioEvents : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHandler.Instance.Subscribe<OnChangeDimension>(DimensionSoundChange);
+        EventHandler.Instance.Subscribe<OnVirtHelmData>(DimensionSoundChange);
     }
 
     private void OnDisable()
     {
-        EventHandler.Instance.Unsubscribe<OnChangeDimension>(DimensionSoundChange);
+        EventHandler.Instance.Unsubscribe<OnVirtHelmData>(DimensionSoundChange);
     }
 
 
-    public void DimensionSoundChange(OnChangeDimension sound)
+    public void DimensionSoundChange(OnVirtHelmData sound)
     {
-        //if (sound.Dimension == "State3D")
-        //{
-        //    haha++;
-        //    Debug.Log(haha);
-        //    if (haha > 3)
-        //    {
-        //        Debug.Log("funny sound");
-        //    }
-        //}
+                //AudioManager.Instance.PlaySound("Help", 1f);
     }
 }
