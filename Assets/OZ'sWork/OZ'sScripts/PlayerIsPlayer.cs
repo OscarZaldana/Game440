@@ -12,19 +12,6 @@ public class PlayerIsPlayer : MonoBehaviour
     float posY;
     float posX;
 
-
-    public void Awake()
-    {
-
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void OnEnable()
     {
         EventHandler.Instance.Subscribe<OnVirtHelmData>(GetDimensions);
@@ -65,8 +52,7 @@ public class PlayerIsPlayer : MonoBehaviour
             if (hit.collider != null && hit.collider.tag == "VirtualHelmet")
             {
                 this.vh = hit.collider.GetComponent<VirtualHelmet>();
-                Debug.Log("hello");
-                EventHandler.Instance.Broadcast(new OnVirtHelmData(hit.collider.transform.position.x, hit.collider.transform.position.y, hit.collider.transform.position.z));
+                EventHandler.Instance.Broadcast(new OnVirtHelmData(hit.collider.transform.position.x, hit.collider.transform.position.y, hit.collider.transform.position.z-1));
                 updatePosition();
                 vh.ChangeDimension();
             }

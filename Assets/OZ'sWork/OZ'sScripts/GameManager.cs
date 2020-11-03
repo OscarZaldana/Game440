@@ -101,8 +101,9 @@ public class GameManager : MonoSingleton<GameManager>
     #region Class Methods
     private void LoadGameStates()
     {
-        State2D = new GameState2D(_stateMachine);
         State3D = new GameState3D(_stateMachine);
+        State2D = new GameState2D(_stateMachine);
+        
 
         _stateMachine.ChangeState(State2D);
         _stateMachine.CurrentState();

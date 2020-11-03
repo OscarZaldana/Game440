@@ -41,9 +41,9 @@ public class CameraCalculations : MonoBehaviour
     {
         if (dimension.Dimension == "State2D")
         {
-            transform.eulerAngles = new Vector3(0f, 0f, 0f);
-            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 3);
-            cam.orthographic = true;
+            //transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            //transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 3);
+            //cam.orthographic = true;
         }
         else if (dimension.Dimension == "State3D")
         {
@@ -56,19 +56,3 @@ public class CameraCalculations : MonoBehaviour
     }
 
 }
-
-
-
-
-
-
-//if (Input.GetKeyDown(KeyCode.Space))
-//{
-//    GameManager.Instance.StateMachine.ChangeState(GameManager.Instance.State3D);
-//    string current = GameManager.Instance.StateMachine.CurrentState();
-
-//    if (current == "State3D")
-//    {
-//        Debug.Log("game3D!!");
-//    }
-//}
