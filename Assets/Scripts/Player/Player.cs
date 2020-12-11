@@ -4,52 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxJumpHeight = 4;
-    public float minJumpHeight = 1;
-    public float timeToJumpApex = .4f;
-    float accelerationTimeAirborne = .2f;
-    float accelerationTimeGrounded = .1f;
+    /*-------------------------------------------------PlayerVariables----------------------------------------*/
+    public Vector3 directionalInput;
+
+
+
     float moveSpeed = 10;
 
-    public Vector2 wallJumpClimb;
-    public Vector2 wallJumpOff;
-    public Vector2 wallLeap;
-
-    public float wallSlideSpeedMax = 3;
-    public float wallStickTime = .25f;
-    float timeToWallUnstick;
-
-    float gravity;
-    float maxJumpVelocity;
-    float minJumpVelocity;
-    [SerializeField]
-    float dashVelocity = 5;
-    [SerializeField]
-    float extraJumps;
-    public float extraDash = 1;
-    [SerializeField]
-    float runSpeed;
-    public float jumpsMade;
-    public float dashesMade;
-    public Vector3 velocity;
-    float velocityXSmoothing;
-
-
-    PlayerController controller;
-
-    RaycastHit hit;
-
-    public Vector3 directionalInput;
-    //public bool wallSliding;
-    //int wallDirX;
-    //public bool dashing = false;
-    //public bool jumping = false;
-    Collider col;
-    BoxCollider colider;
-    public Vector3 forwardCenter;
-    //Bounds bounds = colider.bounds;
-
     bool is3D = false;
+
+    /*-------------------------------------------------2D Attributes----------------------------------------*/
+
+
+
+
+
+
+    public bool walk2D = false;
+    public bool jump = false;
+    public bool crotch = false;
+
+    /*-------------------------------------------------3D Attributes----------------------------------------*/
+
+
+
+
+
+    /*-------------------------------------------------In Game Section----------------------------------------*/
 
     private void OnEnable()
     {
@@ -61,30 +42,15 @@ public class Player : MonoBehaviour
         EventHandler.Instance.Unsubscribe<OnChangeDimension>(GetDimensions);
     }
 
-
-    void Start()
+    private void Start()
     {
-        col = GetComponent<Collider>();
-        colider = GetComponent<BoxCollider>();
-        controller = GetComponent<PlayerController>();
-        gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-        maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        
     }
 
     private void Update()
     {
-        if (is3D == false)
-        {
-            WalkOrRun2D();
-            CalculateVelocity2D();
-        }
-        else if(is3D == true)
-        {
-            controller.Horizantal3DCollisions();
-        }
+        
     }
-
 
     public void SetDirectionalInput(Vector3 input)
     {
@@ -92,52 +58,38 @@ public class Player : MonoBehaviour
     }
 
 
-    public void WalkOrRun2D()
+    /*-------------------------------------------------2D Section----------------------------------------*/
+
+    public void Move2D()
     {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if(walk2D == true)
         {
-            controller.Move2D(velocity * Time.deltaTime * runSpeed, directionalInput);
-        }
-        else
-        {
-            controller.Move2D(velocity * Time.deltaTime, directionalInput);
+
         }
     }
 
-    void CalculateVelocity2D()
-    {
-        float targetVelocityX = directionalInput.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-        velocity.y += 0; //gravity * Time.deltaTime;
-    }
-
-    public void WalkOrRun3D()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            controller.Move3D(velocity * Time.deltaTime * runSpeed, directionalInput);
-        }
-        else
-        {
-            controller.Move3D(velocity * Time.deltaTime, directionalInput);
-        }
-    }
-
-    void CalculateVelocity3D()
-    {
-        float targetVelocityX = directionalInput.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-        velocity.y += 0; //gravity * Time.deltaTime;
-    }
 
 
-    public void GetDimensions(OnChangeDimension dimension) 
+
+
+
+
+
+    /*-------------------------------------------------3D Section----------------------------------------*/
+
+
+
+
+
+
+
+    public void GetDimensions(OnChangeDimension dimension)
     {
         if (dimension.Dimension == "State2D")
         {
             is3D = false;
         }
-        else if(dimension.Dimension == "State3D")
+        else if (dimension.Dimension == "State3D")
         {
             is3D = true;
         }
@@ -147,9 +99,181 @@ public class Player : MonoBehaviour
         }
 
     }
+
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public float maxJumpHeight = 4;
+//public float minJumpHeight = 1;
+//public float timeToJumpApex = .4f;
+//float accelerationTimeAirborne = .2f;
+//float accelerationTimeGrounded = .1f;
+//float moveSpeed = 10;
+
+//public Vector2 wallJumpClimb;
+//public Vector2 wallJumpOff;
+//public Vector2 wallLeap;
+
+//public float wallSlideSpeedMax = 3;
+//public float wallStickTime = .25f;
+//float timeToWallUnstick;
+
+//float gravity;
+//float maxJumpVelocity;
+//float minJumpVelocity;
+//[SerializeField]
+//float dashVelocity = 5;
+//[SerializeField]
+//float extraJumps;
+//public float extraDash = 1;
+//[SerializeField]
+//float runSpeed;
+//public float jumpsMade;
+//public float dashesMade;
+//public Vector3 velocity;
+//float velocityXSmoothing;
+
+
+//PlayerController controller;
+
+//RaycastHit hit;
+
+//public Vector3 directionalInput;
+////public bool wallSliding;
+////int wallDirX;
+////public bool dashing = false;
+////public bool jumping = false;
+//Collider col;
+//BoxCollider colider;
+//public Vector3 forwardCenter;
+////Bounds bounds = colider.bounds;
+
+//bool is3D = false;
+
+//private void OnEnable()
+//{
+//    EventHandler.Instance.Subscribe<OnChangeDimension>(GetDimensions);
+//}
+
+//private void OnDisable()
+//{
+//    EventHandler.Instance.Unsubscribe<OnChangeDimension>(GetDimensions);
+//}
+
+
+//void Start()
+//{
+//    col = GetComponent<Collider>();
+//    colider = GetComponent<BoxCollider>();
+//    controller = GetComponent<PlayerController>();
+//    gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+//    maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+//    minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+//}
+
+//private void Update()
+//{
+//    if (is3D == false)
+//    {
+//        WalkOrRun2D();
+//        CalculateVelocity2D();
+//    }
+//    else if (is3D == true)
+//    {
+//        controller.Horizantal3DCollisions();
+//    }
+//}
+
+
+//public void SetDirectionalInput(Vector3 input)
+//{
+//    directionalInput = input;
+//}
+
+
+//public void WalkOrRun2D()
+//{
+//    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+//    {
+//        controller.Move2D(velocity * Time.deltaTime * runSpeed, directionalInput);
+//    }
+//    else
+//    {
+//        controller.Move2D(velocity * Time.deltaTime, directionalInput);
+//    }
+//}
+
+//void CalculateVelocity2D()
+//{
+//    float targetVelocityX = directionalInput.x * moveSpeed;
+//    velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+//    velocity.y += 0; //gravity * Time.deltaTime;
+//}
+
+//public void WalkOrRun3D()
+//{
+//    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+//    {
+//        controller.Move3D(velocity * Time.deltaTime * runSpeed, directionalInput);
+//    }
+//    else
+//    {
+//        controller.Move3D(velocity * Time.deltaTime, directionalInput);
+//    }
+//}
+
+//void CalculateVelocity3D()
+//{
+//    float targetVelocityX = directionalInput.x * moveSpeed;
+//    velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+//    velocity.y += 0; //gravity * Time.deltaTime;
+//}
+
+
+//public void GetDimensions(OnChangeDimension dimension)
+//{
+//    if (dimension.Dimension == "State2D")
+//    {
+//        is3D = false;
+//    }
+//    else if (dimension.Dimension == "State3D")
+//    {
+//        is3D = true;
+//    }
+//    else
+//    {
+//        Debug.Log("other State");
+//    }
+
+//}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //void Update()
 //{

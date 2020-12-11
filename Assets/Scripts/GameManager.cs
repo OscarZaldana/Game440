@@ -111,7 +111,7 @@ public class GameManager : MonoSingleton<GameManager>
         State3D = new GameState3D(_stateMachine);
         State2D = new GameState2D(_stateMachine);
 
-        if (sceneName == "GameScene1") _stateMachine.ChangeState(State2D);
+        if (sceneName != "GameScene1") _stateMachine.ChangeState(State2D);
         else _stateMachine.ChangeState(TitleState);
 
     }
