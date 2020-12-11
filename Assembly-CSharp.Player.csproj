@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2BE5C9FF-CE11-E346-49BD-51F2EF8EE26C}</ProjectGuid>
+    <ProjectGuid>{CACFCA98-9626-280B-A96A-8875BF9E2EBB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -637,15 +637,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{42B30758-2C33-28E7-3F8C-F5B787D1FDB2}</Project>
+      <Project>{850B64DE-0AEF-EF17-80FA-0268CC2DD38E}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{47F2CEFC-358A-B3D2-A21B-2940470459ED}</Project>
+      <Project>{560BA573-B7F8-B25C-925B-8D7783D9988A}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{BA828F67-FA4C-B87C-AAA5-899A1FF76723}</Project>
+      <Project>{F32A9D93-4818-EE5B-C3AC-B10C641D32E9}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
   </ItemGroup>
