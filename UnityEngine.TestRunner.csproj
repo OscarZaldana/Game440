@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C598B134-2955-5169-2CE0-80E118B65AE3}</ProjectGuid>
+    <ProjectGuid>{A2EAE8DE-61A2-86C5-8A65-309C231FB81F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>UnityEngine.TestRunner</AssemblyName>
@@ -92,6 +92,7 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\TestRunner\Messages\IEditModeTestYieldInstruction.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\Utils\AssemblyProvider\IAssemblyWrapper.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\TestRunner\TestPlatform.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Commands\EnumerableTestState.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Attributes\UnityPlatformAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Runner\CompositeWorkItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Runner\UnityWorkItem.cs" />
@@ -164,7 +165,6 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\Utils\AssemblyProvider\AssemblyWrapper.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Commands\EnumerableApplyChangesToContextCommand.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\Utils\AttributeHelper.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\NUnitExtensions\Commands\EnumerableTestState.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Library\PackageCache\com.unity.test-framework@1.1.20\UnityEngine.TestRunner\UnityEngine.TestRunner.asmdef" />
