@@ -5,34 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : RayCast
 {
-    public float maxSlopeAngle = 80;
-
-    public CollisionInfo collisions;
-    [HideInInspector]
-    public Vector3 playerInput;
-    Player player;
-
-    Collider col;
-    BoxCollider colider;
-    public Vector3 forwardCenter;
-    RaycastHit hit;
-
-    public override void Start()
-    {
-        base.Start();
-        collisions.faceDir = 1;
-        player = GetComponent<Player>();
-        col = GetComponent<Collider>();
-        colider = GetComponent<BoxCollider>();
-    }
-
-    public void Horizantal3DCollisions()
-    {
-        forwardCenter = new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.max.z);
-        Vector3 frwd = gameObject.transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(forwardCenter, frwd * 2, Color.red);
-        Physics.Raycast(gameObject.transform.position, frwd, out hit, 2);
-    }
+    
 
 
 
@@ -40,258 +13,299 @@ public class PlayerController : RayCast
 
 
 
-    void Horizontal2DCollisions(ref Vector3 moveAmount)
-    {
-        float directionX = collisions.faceDir;
-        float rayLength = Mathf.Abs(moveAmount.x) + skinWidth;
 
-        if (Mathf.Abs(moveAmount.x) < skinWidth)
-        {
-            rayLength = 2 * skinWidth;
-        }
-
-        if(directionX == -1)
-        {
-            Vector3 rayCOrigin = raycastOrigins.leftCenter;
-            Physics.Raycast(rayCOrigin, Vector3.left * -directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayCOrigin, Vector3.left * -directionX, Color.red);
-
-            Vector3 rayLTOrigin = raycastOrigins.leftTopLeft;
-            rayLTOrigin += Vector3.down * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayLTOrigin, Vector3.left * -directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayLTOrigin, Vector3.left * -directionX, Color.red);
-
-            Vector3 rayRTOrigin = raycastOrigins.leftTopRight;
-            rayRTOrigin += Vector3.down * dstBetweenRays;
-            rayRTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayRTOrigin, Vector3.left * -directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayRTOrigin, Vector3.left * -directionX, Color.red);
-
-            Vector3 rayLBOrigin = raycastOrigins.leftBottomLeft;
-            rayLBOrigin += Vector3.up * dstBetweenRays;
-            rayLBOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayLBOrigin, Vector3.left * -directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayLBOrigin, Vector3.left * -directionX, Color.red);
-
-            Vector3 rayRBOrigin = raycastOrigins.leftBottomRight;
-            rayRBOrigin += Vector3.up * dstBetweenRays;
-            rayRBOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayRBOrigin, Vector3.left * -directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayRBOrigin, Vector3.left * -directionX, Color.red);
-
-        }
-        else
-        {
-            Vector3 rayCOrigin = raycastOrigins.rightCenter;
-            Physics.Raycast(rayCOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayCOrigin, Vector3.right * directionX, Color.red);
-
-            Vector3 rayLTOrigin = raycastOrigins.rightTopLeft;
-            rayLTOrigin += Vector3.down * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayLTOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayLTOrigin, Vector3.right * directionX, Color.red);
-
-            Vector3 rayRTOrigin = raycastOrigins.rightTopRight;
-            rayRTOrigin += Vector3.down * dstBetweenRays;
-            rayRTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayRTOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayRTOrigin, Vector3.right * directionX, Color.red);
-
-            Vector3 rayLBOrigin = raycastOrigins.rightBottomLeft;
-            rayLBOrigin += Vector3.up * dstBetweenRays;
-            rayLBOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayLBOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayLBOrigin, Vector3.right * directionX, Color.red);
-
-            Vector3 rayRBOrigin = raycastOrigins.rightBottomRight;
-            rayRBOrigin += Vector3.up * dstBetweenRays;
-            rayRBOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayRBOrigin, Vector3.right * directionX, rayLength, collisionMask);
-            Debug.DrawRay(rayRBOrigin, Vector3.right * directionX, Color.red);
-        }
-    }
-
-    void Verticle2DCollisions(ref Vector3 moveAmount)
-    {
-        float directionY = Mathf.Sign(moveAmount.y);
-        float rayLength = Mathf.Abs(moveAmount.y) + skinWidth;
-
-        if (directionY == -1)
-        {
-            Vector3 rayCOrigin = raycastOrigins.topCenter;
-            Physics.Raycast(rayCOrigin, Vector3.down * directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayCOrigin, Vector3.down * directionY, Color.red);
-
-            Vector3 rayLTOrigin = raycastOrigins.topLeftForward;
-            rayLTOrigin += Vector3.right * dstBetweenRays;
-            rayLTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayLTOrigin, Vector3.down * directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayLTOrigin, Vector3.down * directionY, Color.red);
-
-            Vector3 rayRTOrigin = raycastOrigins.topLeftBack;
-            rayLTOrigin += Vector3.right * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayRTOrigin, Vector3.down * directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayRTOrigin, Vector3.down * directionY, Color.red);
-
-            Vector3 rayLBOrigin = raycastOrigins.toprightForward;
-            rayLTOrigin += Vector3.left * dstBetweenRays;
-            rayLTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayLBOrigin, Vector3.down * directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayLBOrigin, Vector3.down * directionY, Color.red);
-
-            Vector3 rayRBOrigin = raycastOrigins.topRightBack;
-            rayLTOrigin += Vector3.left * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayRBOrigin, Vector3.down * directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayRBOrigin, Vector3.down * directionY, Color.red);
-
-        }
-        else
-        {
-            Vector3 rayCOrigin = raycastOrigins.topCenter;
-            Physics.Raycast(rayCOrigin, Vector3.down * -directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayCOrigin, Vector3.down * -directionY, Color.red);
-
-            Vector3 rayLTOrigin = raycastOrigins.topLeftForward;
-            rayLTOrigin += Vector3.right * dstBetweenRays;
-            rayLTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayLTOrigin, Vector3.down * -directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayLTOrigin, Vector3.down * -directionY, Color.red);
-
-            Vector3 rayRTOrigin = raycastOrigins.topLeftBack;
-            rayLTOrigin += Vector3.right * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayRTOrigin, Vector3.down * -directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayRTOrigin, Vector3.down * -directionY, Color.red);
-
-            Vector3 rayLBOrigin = raycastOrigins.toprightForward;
-            rayLTOrigin += Vector3.left * dstBetweenRays;
-            rayLTOrigin += Vector3.back * dstBetweenRays;
-            Physics.Raycast(rayLBOrigin, Vector3.down * -directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayLBOrigin, Vector3.down * -directionY, Color.red);
-
-            Vector3 rayRBOrigin = raycastOrigins.topRightBack;
-            rayLTOrigin += Vector3.left * dstBetweenRays;
-            rayLTOrigin += Vector3.forward * dstBetweenRays;
-            Physics.Raycast(rayRBOrigin, Vector3.down * -directionY, rayLength, collisionMask);
-            Debug.DrawRay(rayRBOrigin, Vector3.down * -directionY, Color.red);
-        }
-    }
-
-    //2D
-    public void Move2D(Vector3 moveAmount, bool standingOnPlatform)
-    {
-        Move2D(moveAmount, Vector3.zero, standingOnPlatform);
-    }
-
-    public void Move2D(Vector3 moveAmount, Vector3 input, bool standingOnPlatform = false)
-    {
-        UpdateRaycastOrigins();
-
-        collisions.Reset();
-        collisions.moveAmountOld = moveAmount;
-        playerInput = input;
-
-        //if (moveAmount.y < 0)
-        //{
-        //    DescendSlope(ref moveAmount);
-        //}
-
-        if (moveAmount.x != 0)
-        {
-            collisions.faceDir = (int)Mathf.Sign(moveAmount.x);
-        }
-
-        Horizontal2DCollisions(ref moveAmount);
-        if (moveAmount.y != 0)
-        {
-            Verticle2DCollisions(ref moveAmount);
-        }
-
-        transform.Translate(moveAmount);
-
-        if (standingOnPlatform)
-        {
-            collisions.below = true;
-        }
-    }
-
-    //3D
-    public void Move3D(Vector3 moveAmount, bool standingOnPlatform)
-    {
-        Move3D(moveAmount, Vector3.zero, standingOnPlatform);
-    }
-
-    public void Move3D(Vector3 moveAmount, Vector3 input, bool standingOnPlatform = false)
-    {
-        //UpdateRaycastOrigins();
-
-        //collisions.Reset();
-        //collisions.moveAmountOld = moveAmount;
-        //playerInput = input;
-
-        ////if (moveAmount.y < 0)
-        ////{
-        ////    DescendSlope(ref moveAmount);
-        ////}
-
-        //if (moveAmount.x != 0)
-        //{
-        //    collisions.faceDir = (int)Mathf.Sign(moveAmount.x);
-        //}
-
-        //Horizantal3DCollisions(ref moveAmount);
-        //if (moveAmount.y != 0)
-        //{
-        //    //Vertical3DCollisions(ref moveAmount);
-        //}
-
-        //transform.Translate(moveAmount);
-
-        //if (standingOnPlatform)
-        //{
-        //    collisions.below = true;
-        //}
-    }
-
-
-    public struct CollisionInfo
-    {
-        public bool above, below;
-        public bool left, right;
-
-        //public bool climbingSlope;
-        //public bool descendingSlope;
-        //public bool slidingDownMaxSlope;
-
-        //public float slopeAngle, slopeAngleOld;
-        //public Vector2 slopeNormal;
-        public Vector3 moveAmountOld;
-        public int faceDir;
-        public bool fallingThroughPlatform;
-
-        public void Reset()
-        {
-            above = below = false;
-            left = right = false;
-            //climbingSlope = false;
-            //descendingSlope = false;
-            //slidingDownMaxSlope = false;
-            //slopeNormal = Vector2.zero;
-
-            //slopeAngleOld = slopeAngle;
-            //slopeAngle = 0;
-        }
-    }
 
 }
 
 
 
+//public float maxSlopeAngle = 80;
 
+//public CollisionInfo collisions;
+//[HideInInspector]
+//public Vector3 playerInput;
+//Player player;
+
+//Collider col;
+//BoxCollider colider;
+//public Vector3 forwardCenter;
+//RaycastHit hit;
+
+//public override void Start()
+//{
+//    base.Start();
+//    collisions.faceDir = 1;
+//    player = GetComponent<Player>();
+//    col = GetComponent<Collider>();
+//    colider = GetComponent<BoxCollider>();
+//}
+
+//public void Horizantal3DCollisions()
+//{
+//    forwardCenter = new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.max.z);
+//    Vector3 frwd = gameObject.transform.TransformDirection(Vector3.forward);
+//    Debug.DrawRay(forwardCenter, frwd * 2, Color.red);
+//    Physics.Raycast(gameObject.transform.position, frwd, out hit, 2);
+//}
+
+
+
+
+
+
+
+//void Horizontal2DCollisions(ref Vector3 moveAmount)
+//{
+//    float directionX = collisions.faceDir;
+//    float rayLength = Mathf.Abs(moveAmount.x) + skinWidth;
+
+//    if (Mathf.Abs(moveAmount.x) < skinWidth)
+//    {
+//        rayLength = 2 * skinWidth;
+//    }
+
+//    if (directionX == -1)
+//    {
+//        Vector3 rayCOrigin = raycastOrigins.leftCenter;
+//        Physics.Raycast(rayCOrigin, Vector3.left * -directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayCOrigin, Vector3.left * -directionX, Color.red);
+
+//        Vector3 rayLTOrigin = raycastOrigins.leftTopLeft;
+//        rayLTOrigin += Vector3.down * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayLTOrigin, Vector3.left * -directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayLTOrigin, Vector3.left * -directionX, Color.red);
+
+//        Vector3 rayRTOrigin = raycastOrigins.leftTopRight;
+//        rayRTOrigin += Vector3.down * dstBetweenRays;
+//        rayRTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayRTOrigin, Vector3.left * -directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayRTOrigin, Vector3.left * -directionX, Color.red);
+
+//        Vector3 rayLBOrigin = raycastOrigins.leftBottomLeft;
+//        rayLBOrigin += Vector3.up * dstBetweenRays;
+//        rayLBOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayLBOrigin, Vector3.left * -directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayLBOrigin, Vector3.left * -directionX, Color.red);
+
+//        Vector3 rayRBOrigin = raycastOrigins.leftBottomRight;
+//        rayRBOrigin += Vector3.up * dstBetweenRays;
+//        rayRBOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayRBOrigin, Vector3.left * -directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayRBOrigin, Vector3.left * -directionX, Color.red);
+
+//    }
+//    else
+//    {
+//        Vector3 rayCOrigin = raycastOrigins.rightCenter;
+//        Physics.Raycast(rayCOrigin, Vector3.right * directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayCOrigin, Vector3.right * directionX, Color.red);
+
+//        Vector3 rayLTOrigin = raycastOrigins.rightTopLeft;
+//        rayLTOrigin += Vector3.down * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayLTOrigin, Vector3.right * directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayLTOrigin, Vector3.right * directionX, Color.red);
+
+//        Vector3 rayRTOrigin = raycastOrigins.rightTopRight;
+//        rayRTOrigin += Vector3.down * dstBetweenRays;
+//        rayRTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayRTOrigin, Vector3.right * directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayRTOrigin, Vector3.right * directionX, Color.red);
+
+//        Vector3 rayLBOrigin = raycastOrigins.rightBottomLeft;
+//        rayLBOrigin += Vector3.up * dstBetweenRays;
+//        rayLBOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayLBOrigin, Vector3.right * directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayLBOrigin, Vector3.right * directionX, Color.red);
+
+//        Vector3 rayRBOrigin = raycastOrigins.rightBottomRight;
+//        rayRBOrigin += Vector3.up * dstBetweenRays;
+//        rayRBOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayRBOrigin, Vector3.right * directionX, rayLength, collisionMask);
+//        Debug.DrawRay(rayRBOrigin, Vector3.right * directionX, Color.red);
+//    }
+//}
+
+//void Verticle2DCollisions(ref Vector3 moveAmount)
+//{
+//    float directionY = Mathf.Sign(moveAmount.y);
+//    float rayLength = Mathf.Abs(moveAmount.y) + skinWidth;
+
+//    if (directionY == -1)
+//    {
+//        Vector3 rayCOrigin = raycastOrigins.topCenter;
+//        Physics.Raycast(rayCOrigin, Vector3.down * directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayCOrigin, Vector3.down * directionY, Color.red);
+
+//        Vector3 rayLTOrigin = raycastOrigins.topLeftForward;
+//        rayLTOrigin += Vector3.right * dstBetweenRays;
+//        rayLTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayLTOrigin, Vector3.down * directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayLTOrigin, Vector3.down * directionY, Color.red);
+
+//        Vector3 rayRTOrigin = raycastOrigins.topLeftBack;
+//        rayLTOrigin += Vector3.right * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayRTOrigin, Vector3.down * directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayRTOrigin, Vector3.down * directionY, Color.red);
+
+//        Vector3 rayLBOrigin = raycastOrigins.toprightForward;
+//        rayLTOrigin += Vector3.left * dstBetweenRays;
+//        rayLTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayLBOrigin, Vector3.down * directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayLBOrigin, Vector3.down * directionY, Color.red);
+
+//        Vector3 rayRBOrigin = raycastOrigins.topRightBack;
+//        rayLTOrigin += Vector3.left * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayRBOrigin, Vector3.down * directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayRBOrigin, Vector3.down * directionY, Color.red);
+
+//    }
+//    else
+//    {
+//        Vector3 rayCOrigin = raycastOrigins.topCenter;
+//        Physics.Raycast(rayCOrigin, Vector3.down * -directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayCOrigin, Vector3.down * -directionY, Color.red);
+
+//        Vector3 rayLTOrigin = raycastOrigins.topLeftForward;
+//        rayLTOrigin += Vector3.right * dstBetweenRays;
+//        rayLTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayLTOrigin, Vector3.down * -directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayLTOrigin, Vector3.down * -directionY, Color.red);
+
+//        Vector3 rayRTOrigin = raycastOrigins.topLeftBack;
+//        rayLTOrigin += Vector3.right * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayRTOrigin, Vector3.down * -directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayRTOrigin, Vector3.down * -directionY, Color.red);
+
+//        Vector3 rayLBOrigin = raycastOrigins.toprightForward;
+//        rayLTOrigin += Vector3.left * dstBetweenRays;
+//        rayLTOrigin += Vector3.back * dstBetweenRays;
+//        Physics.Raycast(rayLBOrigin, Vector3.down * -directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayLBOrigin, Vector3.down * -directionY, Color.red);
+
+//        Vector3 rayRBOrigin = raycastOrigins.topRightBack;
+//        rayLTOrigin += Vector3.left * dstBetweenRays;
+//        rayLTOrigin += Vector3.forward * dstBetweenRays;
+//        Physics.Raycast(rayRBOrigin, Vector3.down * -directionY, rayLength, collisionMask);
+//        Debug.DrawRay(rayRBOrigin, Vector3.down * -directionY, Color.red);
+//    }
+//}
+
+////2D
+//public void Move2D(Vector3 moveAmount, bool standingOnPlatform)
+//{
+//    Move2D(moveAmount, Vector3.zero, standingOnPlatform);
+//}
+
+//public void Move2D(Vector3 moveAmount, Vector3 input, bool standingOnPlatform = false)
+//{
+//    UpdateRaycastOrigins();
+
+//    collisions.Reset();
+//    collisions.moveAmountOld = moveAmount;
+//    playerInput = input;
+
+//    //if (moveAmount.y < 0)
+//    //{
+//    //    DescendSlope(ref moveAmount);
+//    //}
+
+//    if (moveAmount.x != 0)
+//    {
+//        collisions.faceDir = (int)Mathf.Sign(moveAmount.x);
+//    }
+
+//    Horizontal2DCollisions(ref moveAmount);
+//    if (moveAmount.y != 0)
+//    {
+//        Verticle2DCollisions(ref moveAmount);
+//    }
+
+//    transform.Translate(moveAmount);
+
+//    if (standingOnPlatform)
+//    {
+//        collisions.below = true;
+//    }
+//}
+
+////3D
+//public void Move3D(Vector3 moveAmount, bool standingOnPlatform)
+//{
+//    Move3D(moveAmount, Vector3.zero, standingOnPlatform);
+//}
+
+//public void Move3D(Vector3 moveAmount, Vector3 input, bool standingOnPlatform = false)
+//{
+//    //UpdateRaycastOrigins();
+
+//    //collisions.Reset();
+//    //collisions.moveAmountOld = moveAmount;
+//    //playerInput = input;
+
+//    ////if (moveAmount.y < 0)
+//    ////{
+//    ////    DescendSlope(ref moveAmount);
+//    ////}
+
+//    //if (moveAmount.x != 0)
+//    //{
+//    //    collisions.faceDir = (int)Mathf.Sign(moveAmount.x);
+//    //}
+
+//    //Horizantal3DCollisions(ref moveAmount);
+//    //if (moveAmount.y != 0)
+//    //{
+//    //    //Vertical3DCollisions(ref moveAmount);
+//    //}
+
+//    //transform.Translate(moveAmount);
+
+//    //if (standingOnPlatform)
+//    //{
+//    //    collisions.below = true;
+//    //}
+//}
+
+
+//public struct CollisionInfo
+//{
+//    public bool above, below;
+//    public bool left, right;
+
+//    //public bool climbingSlope;
+//    //public bool descendingSlope;
+//    //public bool slidingDownMaxSlope;
+
+//    //public float slopeAngle, slopeAngleOld;
+//    //public Vector2 slopeNormal;
+//    public Vector3 moveAmountOld;
+//    public int faceDir;
+//    public bool fallingThroughPlatform;
+
+//    public void Reset()
+//    {
+//        above = below = false;
+//        left = right = false;
+//        //climbingSlope = false;
+//        //descendingSlope = false;
+//        //slidingDownMaxSlope = false;
+//        //slopeNormal = Vector2.zero;
+
+//        //slopeAngleOld = slopeAngle;
+//        //slopeAngle = 0;
+//    }
+//}
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

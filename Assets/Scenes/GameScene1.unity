@@ -1047,6 +1047,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   maxSlopeAngle: 80
   playerInput: {x: 0, y: 0, z: 0}
+  forwardCenter: {x: 0, y: 0, z: 0}
 --- !u!114 &2135199610
 MonoBehaviour:
   m_ObjectHideFlags: 0
