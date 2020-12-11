@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{81ABA412-3879-2197-4239-FC2496C9D820}</ProjectGuid>
+    <ProjectGuid>{EFD41DFC-9199-26AC-93A4-728C0CFDA585}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.VisualStudio.Editor</AssemblyName>
@@ -63,6 +63,7 @@
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Symbols.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Solution.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\SolutionParser.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Image.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Messaging\Message.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\ProjectGeneration\AssemblyNameProvider.cs" />
@@ -80,7 +81,6 @@
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\FileUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Messaging\Serializer.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\Messaging\ExceptionEventArgs.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.5\Editor\com.unity.ide.visualstudio.asmdef" />
@@ -654,19 +654,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{FF9C8AF9-EF12-D29D-B414-E114A7D55BBB}</Project>
+      <Project>{5D800BC5-7F6F-FC8D-FDBE-16147B5E4958}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{42B30758-2C33-28E7-3F8C-F5B787D1FDB2}</Project>
+      <Project>{850B64DE-0AEF-EF17-80FA-0268CC2DD38E}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{F5C275C6-B4F1-FFD4-E152-AE6071F558B3}</Project>
+      <Project>{039D9A57-D7E3-91B6-C346-6855C4E6BC63}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{C598B134-2955-5169-2CE0-80E118B65AE3}</Project>
+      <Project>{A2EAE8DE-61A2-86C5-8A65-309C231FB81F}</Project>
       <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>

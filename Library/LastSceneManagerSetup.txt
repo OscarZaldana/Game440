@@ -1,5 +1,5 @@
 sceneSetups:
-- path: E:/UnityProjects/440Test/440Test/Assets/Scenes/TestScene.unity
+- path: Assets/Scenes/TitleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
