@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Fire
-  - Object
-  - VirtualHelmet
-  - Teleport
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - floor
-  - person
+  - Object
   - Player
+  - 
   - 
   - 
   - 
