@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     Player player;
-    bool is3D;
-    bool is2D;
+    Ray2D pC;
+
+    bool is3D = false;
+    bool is2D = false;
 
     KeyCode left2D = KeyCode.LeftArrow;
     KeyCode right2D = KeyCode.RightArrow;
@@ -18,6 +20,7 @@ public class PlayerInput : MonoBehaviour
     KeyCode s2D = KeyCode.S;
     KeyCode lShift2D = KeyCode.LeftShift;
     KeyCode tab2D = KeyCode.Tab;
+    KeyCode space2D = KeyCode.Space;
 
 
 
@@ -47,105 +50,113 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
+        pC = GetComponent<Ray2D>();
     }
 
     void Update()
     {
         if(is2D == true)
         {
-            //Left walking
-            if (Input.GetKeyDown(left2D) || Input.GetKeyDown(a2D))
-            {
-                
-                player.walk2D = true;
-            }
-            //Right Walking
-            if (Input.GetKeyDown(right2D) || Input.GetKeyDown(d2D))
-            {
-               
-                player.walk2D = true;
-            }
-            //jumping
-            if (Input.GetKeyDown(up2D) || Input.GetKeyDown(w2D))
-            {
+            //    //Left walking
+            //    if (Input.GetKeyDown(left2D) || Input.GetKeyDown(a2D))
+            //    {
+            //        pC.MoveDirection(-1);
+            //        player.walk2D = true;
+            //    }
+            //    //Right Walking
+            //    if (Input.GetKeyDown(right2D) || Input.GetKeyDown(d2D))
+            //    {
+            //        pC.MoveDirection(1);
+            //        player.walk2D = true;
+            //    }
+            //    //jumping
+            //    if (Input.GetKeyDown(up2D) || Input.GetKeyDown(w2D))
+            //    {
+            //        pC.VerticalDirection(1);
+            //        player.jump = true;
+            //    }
+            //    //crotching
+            //    if (Input.GetKeyDown(down2D) || Input.GetKeyDown(s2D))
+            //    {
+            //        pC.VerticalDirection(-1);
+            //        player.crotch = true;
+            //    }
+            //    //Stop Walking Left
+            //    if (Input.GetKeyUp(left2D) || Input.GetKeyUp(a2D))
+            //    {
 
-                player.jump = true;
-            }
-            //crotching
-            if (Input.GetKeyDown(down2D) || Input.GetKeyDown(s2D))
-            {
+            //        player.walk2D = false;
+            //    }
+            //    //Stop Walking Right
+            //    if (Input.GetKeyUp(right2D) || Input.GetKeyUp(d2D))
+            //    {
 
-                player.crotch = true;
-            }
-            //Stop Walking Left
-            if (Input.GetKeyUp(left2D) || Input.GetKeyUp(a2D))
-            {
-                
-                player.walk2D = false;
-            }
-            //Stop Walking Right
-            if (Input.GetKeyUp(right2D) || Input.GetKeyUp(d2D))
-            {
-          
-                player.walk2D = false;
-            }
-            //stop jumping
-            if (Input.GetKeyUp(up2D) || Input.GetKeyUp(w2D))
-            {
+            //        player.walk2D = false;
+            //    }
+            //    //stop jumping
+            //    if (Input.GetKeyUp(up2D) || Input.GetKeyUp(w2D))
+            //    {
 
-                player.jump = false;
-            }
-            //Stop Walking Right
-            if (Input.GetKeyUp(down2D) || Input.GetKeyUp(s2D))
-            {
+            //        player.jump = false;
+            //    }
+            //    //Stop Walking Right
+            //    if (Input.GetKeyUp(down2D) || Input.GetKeyUp(s2D))
+            //    {
 
-                player.crotch = false;
+            //        player.crotch = false;
+            //    }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                jump = KeyCode.W;
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jump = KeyCode.Space;
+            }
+
+            Vector3 directionalInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), player.transform.position.z);
+            player.SetDirectionalInput(directionalInput);
+
+            if (Input.GetKeyDown(jump))
+            {
+                player.jumping = true;
+                player.OnJumpInputDown();
+            }
+            if (Input.GetKeyUp(jump))
+            {
+                player.jumping = false;
+                player.OnJumpInputUp();
+            }
+
 
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //if(is3D == true)
+        //{
+
+        //}
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        if(is3D == true)
-        {
-
-        }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-
-
-            //jump = KeyCode.W;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jump = KeyCode.Space;
-        }
-
-        //Vector3 directionalInput = new Vector3(Input.GetAxisRaw("Horizontal"), transform.position.y, Input.GetAxisRaw("Vertical"));
-        //player.SetDirectionalInput(directionalInput);
-
-        //if (Input.GetKeyDown(jump))
+        //if (Input.GetKeyDown(KeyCode.W))
         //{
-        //    player.jumping = true;
-        //    player.OnJumpInputDown();
+
+
+        //    //jump = KeyCode.W;
         //}
-        //if (Input.GetKeyUp(jump))
+
+        //if (Input.GetKeyDown(KeyCode.Space))
         //{
-        //    player.jumping = false;
-        //    player.OnJumpInputUp();
+        //    jump = KeyCode.Space;
         //}
-        //if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Joystick1Button1))
-        //{
-        //    player.Dashing();
-        //}
+
     }
 
     public void GetDimensions(OnChangeDimension dimension)

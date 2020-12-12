@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/OZtestScene.unity
-=======
-- path: Assets/Kareem'sWork/Scenes/Living room.unity
->>>>>>> master
+- path: Assets/Project/main.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

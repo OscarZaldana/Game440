@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: 840870992}
   - component: {fileID: 840870997}
   - component: {fileID: 840870996}
+  - component: {fileID: 840870998}
+  - component: {fileID: 840870999}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -297,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840870991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -328,7 +330,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalInput: {x: 0, y: 0, z: 0}
+  jump: 0
+  crotch: 0
+  velocity2D: {x: 0, y: 0, z: 0}
   walk2D: 0
+--- !u!114 &840870998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840870991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ebe5bb7544ad4041848644ccb98f15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  zedRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  zedRaySpacing: 0
+  collider: {fileID: 0}
+--- !u!114 &840870999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840870991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374100b878f44c248b608ce8dcb5a1e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  zedRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  zedRaySpacing: 0
+  collider: {fileID: 0}
+  faceDir: 1
+  topBot: -1
 --- !u!1 &1044860272
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,9 +530,9 @@ GameObject:
   - component: {fileID: 2057948386}
   - component: {fileID: 2057948385}
   - component: {fileID: 2057948384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
