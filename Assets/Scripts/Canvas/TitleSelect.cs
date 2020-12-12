@@ -35,7 +35,7 @@ public class TitleSelect : MonoBehaviour
 
     public void StartGameButton()
     {
-        SceneManager.LoadScene("GameScene1");
+        SceneManager.LoadScene("main");
         GameManager.Instance.StateMachine.ChangeState("State2D");
     }
 

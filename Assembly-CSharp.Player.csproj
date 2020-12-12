@@ -57,34 +57,57 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Events\EventHandler.cs" />
-    <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfSpaceDetails.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\eWolf\Common\Scripts\Interfaces\IRandomizer.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\PerfabBuilder.cs" />
     <Compile Include="Assets\Scripts\Environment\VirtualIntercom.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfObjectBase.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
+    <Compile Include="Assets\eWolf\Common\Scripts\Helper\SceneHelpers.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\States\State.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\RandomMaterialHolder.cs" />
     <Compile Include="Assets\Scripts\States\InGameStates\OptionState.cs" />
     <Compile Include="Assets\Scripts\States\InGameStates\PauseState.cs" />
     <Compile Include="Assets\Scripts\Player\RayCast.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfCollisionStyles.cs" />
+    <Compile Include="Assets\eWolf\Common\Scripts\Helper\ObjectHelper.cs" />
     <Compile Include="Assets\Scripts\States\InGameStates\GameState2D.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfCapacities.cs" />
     <Compile Include="Assets\Scripts\Canvas\OptionSelect.cs" />
+    <Compile Include="Assets\Scripts\Player\Ray2D.cs" />
     <Compile Include="Assets\Scripts\States\InGameStates\GameState3D.cs" />
     <Compile Include="Assets\Scripts\States\IStateMachine.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\ObjectsOnFloor.cs" />
     <Compile Include="Assets\Scripts\Canvas\Pause.cs" />
     <Compile Include="Assets\Scripts\Canvas\TitleSelect.cs" />
     <Compile Include="Assets\Scripts\States\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Singleton\MonoSingleton.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfObjectCollection.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfObjectJar.cs" />
     <Compile Include="Assets\Scripts\Audio\SoundList.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\States\InGameStates\TitleState.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfDetails.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\ScifiObjectBase.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfFiller.cs" />
     <Compile Include="Assets\Scripts\Events\Events.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioEvents.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfSpace.cs" />
     <Compile Include="Assets\Scripts\States\IState.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Interfaces\IShelfObject.cs" />
     <Compile Include="Assets\Scripts\Player\RayController.cs" />
+    <Compile Include="Assets\eWolf\Sci-Fi_Objects_Pack1\Scripts\Shelf\ShelfObjects.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\eWolf\Common\Shaders\eWolf-Double-Standard.shader" />
+     <None Include="Assets\eWolf\Common\Shaders\eWolf-Double-Unlit-Normal.shader" />
+     <None Include="Assets\eWolf\Common\Shaders\eWolf-Double-Unlit-AlphaTest.shader" />
+     <None Include="Assets\eWolf\Common\Shaders\eWolf-Double-Unlit-Alpha.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.3f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>
     </Reference>
